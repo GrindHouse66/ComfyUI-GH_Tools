@@ -1,4 +1,5 @@
-GH Tools for CompyUI
+GH Tools for ComfyUI
+
 Simple quality of life Tools for ComfyUI
 
 Basically, If it makes my life easier, it will be here. The list will grow over time.
