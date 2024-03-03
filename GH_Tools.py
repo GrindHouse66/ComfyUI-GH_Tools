@@ -8,7 +8,7 @@ class GHImg_Sizer:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "Width": ("INT",{
+                "Image_Width": ("INT",{
                     "default": 1024,
                     "step":1,
                     "display": "number"
@@ -33,18 +33,19 @@ class GHImg_Sizer:
 
     CATEGORY = "GH_Tools"
 
-    def run(self, Width, Aspect_Ratio_Width, Aspect_Ratio_Height):
+    def run(self, Image_Width, Aspect_Ratio_Width, Aspect_Ratio_Height):
         # Taking the image base width and an aspect ratio, calculate and appropriate heitgh value and return it
               
         # Calculate the aspect ratio decimal
         aspect_ratio_decimal = Aspect_Ratio_Width / Aspect_Ratio_Height
         
-        # Calculate width and height
-        #width = math.sqrt(pixels * aspect_ratio_decimal)
-        Height = Width / aspect_ratio_decimal
+        # Calculate height from Width and aspect ratio
+        # Ensure Width is a multiple of 8 before dividing by Aspect Ratio
+        Height = (((Image_Width + 7) // 8) * 8) / aspect_ratio_decimal
         
         # Return the width and height as a tuple of integers
-        return (int(round(Width)), int(round(Height)))
+        # Ensure Height is a multiple of 8 before returning
+        return (int(round(((Image_Width + 7) // 8) * 8)), int(round((Height + 7) // 8) * 8))
     
 NODE_CLASS_MAPPINGS = {
     "GHImg_Sizer": GHImg_Sizer
