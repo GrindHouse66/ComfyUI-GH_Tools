@@ -29,12 +29,12 @@ class GHImg_Sizer:
     RETURN_TYPES = ("INT","INT")
     RETURN_NAMES = ("Width", "Height")
 
-    FUNCTION = "run"
+    FUNCTION = "calcheight"
 
     CATEGORY = "GH_Tools"
 
-    def run(self, Image_Width, Aspect_Ratio_Width, Aspect_Ratio_Height):
-        # Taking the image base width and an aspect ratio, calculate and appropriate heitgh value and return it
+    def calcheight(self, Image_Width, Aspect_Ratio_Width, Aspect_Ratio_Height):
+        # Taking the image base width and an aspect ratio, calculate and appropriate height value and return it
               
         # Calculate the aspect ratio decimal
         aspect_ratio_decimal = Aspect_Ratio_Width / Aspect_Ratio_Height
