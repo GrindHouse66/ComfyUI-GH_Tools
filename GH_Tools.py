@@ -58,8 +58,8 @@ class GHSimple_Scale:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "Width": ("INT", {"ForceInput": True}),                
-                "Height": ("INT", {"ForceInput": True}),
+                "Width": ("INT", {"forceInput": True}),                
+                "Height": ("INT", {"forceInput": True}),
                 "Scale": ("FLOAT",{"default": 2.00, "min": 0.01, "max": 10.00, "step":0.01, "display": "number"})
             }
         }
