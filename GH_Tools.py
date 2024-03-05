@@ -1,5 +1,8 @@
 import math
 
+
+MAX_RESOLUTION=8192
+
 class GHImg_Sizer:
     def __init__(self):
         pass
@@ -10,7 +13,7 @@ class GHImg_Sizer:
             "required": {
                 "Image_Width": ("INT",{
                     "default": 1024,
-                    "step":1,
+                    "step":8,
                     "display": "number"
                 }),                
                 "Aspect_Ratio_Width": ("INT",{
@@ -55,11 +58,11 @@ class GHSimple_Scale:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "Width": ("WIDTH",),                
-                "Height": ("HEIGHT",),
+                "Width": ("INT", {"default": 512, "min": 16, "max": MAX_RESOLUTION, "step": 8}),                
+                "Height": ("INT", {"default": 512, "min": 16, "max": MAX_RESOLUTION, "step": 8}),
                 "Scale": ("FLOAT",{
                     "default": 2.00,
-                    "min": 0.00,
+                    "min": 0.01,
                     "max": 10.00,
                     "step":0.01,
                     "display": "number"
