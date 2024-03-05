@@ -58,7 +58,7 @@ class GHSimple_Scale:
                 "Width": ("WIDTH",),                
                 "Height": ("HEIGHT",),
                 "Scale": ("FLOAT",{
-                    "default": 2,
+                    "default": 2.00,
                     "min": 0.00,
                     "max": 10.00,
                     "step":0.01,
