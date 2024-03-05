@@ -47,10 +47,49 @@ class GHImg_Sizer:
         # Ensure Height is a multiple of 8 before returning
         return (int(round(((Image_Width + 7) // 8) * 8)), int(round((Height + 7) // 8) * 8))
     
+class GHSimple_Scale:
+    def __init__(self):
+        pass
+
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "Width": ("INT",),                
+                "Height": ("INT",),
+                "Scale": ("FLOAT",{
+                    "default": 2,
+                    "step":0.01,
+                    "display": "number"
+                })
+            }
+        }
+
+    RETURN_TYPES = ("INT","INT")
+    RETURN_NAMES = ("Width", "Height")
+
+    FUNCTION = "rescale"
+
+    CATEGORY = "GH_Tools"
+
+    def rescale(self, Width, Height, Scale):
+        # Accepts Width and Height from a node connection, and scales based on user input
+              
+        # Calculate the aspect ratio decimal
+        S_Width = Width*Scale
+        S_Height = Height*Scale
+        
+        
+        # Return the width and height as a tuple of integers
+        # Ensure Height is a multiple of 8 before returning
+        return (int(round(((S_Width + 7) // 8) * 8)), int(round((S_Height + 7) // 8) * 8))
+    
 NODE_CLASS_MAPPINGS = {
-    "GHImg_Sizer": GHImg_Sizer
+    "GHImg_Sizer": GHImg_Sizer,
+    "GHSimple_Scale": GHSimple_Scale
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "GHImg_Sizer": "GH Tools Image Sizer"
+    "GHImg_Sizer": "GH Tools Image Sizer",
+    "GHSimple_Scale": "GH Tools Simple Scale"
 }
