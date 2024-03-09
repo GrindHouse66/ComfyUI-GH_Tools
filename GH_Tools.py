@@ -1,5 +1,12 @@
 import math
+from pathlib import Path
 
+#Set paths for future use
+BASEDIR = Path.cwd()                                        #ComfyUI base folder
+MODELSDIR = BASEDIR.joinpath("ComfyUI", "models")           #ComfyUI models folder
+CHKPNTSDIR = MODELSDIR.joinpath("checkpoints")              #ComfyUI checkpoints folder
+LORASDIR = MODELSDIR.joinpath("loras")                      #ComfyUI loras folder
+VAEDIR = MODELSDIR.joinpath("vae")                          #ComfyUI vae folder
 
 MAX_RESOLUTION=8192
 
