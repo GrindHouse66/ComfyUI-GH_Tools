@@ -2,6 +2,7 @@ import math
 import os
 import sys
 import json
+import random
 from pathlib import Path
 from PIL import Image, ImageOps, ImageSequence
 from PIL.PngImagePlugin import PngInfo
@@ -116,6 +117,15 @@ class GHImg_Vwr:
 
     CATEGORY = "GH_Tools"
 
+    def Image_Viewer(self, images, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
+        if VWR_MODES == "Bypass":
+            return (images)
+        elif VWR_MODES == "Preview":
+            return self.save_images(images, filename_prefix, prompt, extra_pnginfo)
+        elif VWR_MODES == "Save":
+            return self.save_images(images, filename_prefix, prompt, extra_pnginfo)
+        return {} 
+
     def save_images(self, images, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
         filename_prefix += self.prefix_append
         full_output_folder, filename, counter, subfolder, filename_prefix = folder_paths.get_save_image_path(filename_prefix, self.output_dir, images[0].shape[1], images[0].shape[0])
@@ -142,7 +152,17 @@ class GHImg_Vwr:
             })
             counter += 1
 
-        return { "ui": { "images": results } }    
+        return { "ui": { "images": results } } 
+    
+    def preview_images(self, images, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
+        self.output_dir = folder_paths.get_temp_directory()
+        self.type = "temp"
+        self.prefix_append = "_temp_" + ''.join(random.choice("abcdefghijklmnopqrstupvxyz") for x in range(5))
+        self.compress_level = 1
+
+        @classmethod
+        def INPUT_TYPES(s):
+            return {"required": {"images": ("IMAGE", ), }, "hidden": {"prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO"}, }
 
     
 NODE_CLASS_MAPPINGS = {
