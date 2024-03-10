@@ -119,13 +119,10 @@ class GHImg_Vwr:
     def Image_Viewer(self, images, modes="Preview", filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
         
         if modes == "Bypass":
-            print("Mode - Bypass")
             return (images)
         elif modes == "Preview":
-            print("Mode - Preview")
             self.preview_images(images, filename_prefix, prompt, extra_pnginfo)
         elif modes == "Save":
-            print("Mode - Save")
             self.save_images(images, filename_prefix, prompt, extra_pnginfo)
         return {} 
 
@@ -154,7 +151,7 @@ class GHImg_Vwr:
                 "type": self.type
             })
             counter += 1
-
+            print(f"Saved {file}")
         return { "ui": { "images": results } } 
     
     def preview_images(self, images, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
@@ -162,6 +159,8 @@ class GHImg_Vwr:
         self.type = "temp"
         self.prefix_append = "_temp_" + ''.join(random.choice("abcdefghijklmnopqrstupvxyz") for x in range(5))
         self.compress_level = 1
+
+        print("Previewing Images")
 
         @classmethod
         def INPUT_TYPES(s):
