@@ -116,8 +116,8 @@ class GHImg_Vwr:
 
     CATEGORY = "GH_Tools"
 
-    def Image_Viewer(self, images, modes, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
-        modes = modes
+    def Image_Viewer(self, images, modes="Preview", filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
+        
         if modes == "Bypass":
             print("Mode - Bypass")
             return (images)
