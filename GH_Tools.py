@@ -160,7 +160,7 @@ class GHImg_Vwr:
         self.prefix_append = "_temp_" + ''.join(random.choice("abcdefghijklmnopqrstupvxyz") for x in range(5))
         self.compress_level = 1
 
-        print(f"Saved {file}")
+        print(f"Preview Images")
         return { "ui": { "images": images } }
 
    
