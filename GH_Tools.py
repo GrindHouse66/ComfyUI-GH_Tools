@@ -103,7 +103,7 @@ class GHImg_Vwr:
     @classmethod
     def INPUT_TYPES(s):
         return {"required":
-                    {"modes": ("COMBO", VWR_MODES), 
+                    {"modes": ("[BYPASS, Preview, Save]", {"default": "Bypass"}), 
                      "images": ("IMAGE", ),
                      "filename_prefix": ("STRING", {"default": "ComfyUI"})},
                 "hidden": {"prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO"}
