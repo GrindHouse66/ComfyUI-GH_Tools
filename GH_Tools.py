@@ -103,7 +103,7 @@ class GHImg_Vwr:
     @classmethod
     def INPUT_TYPES(s):
         return {"required":
-                    {"mode":("STRING", {"choices": VWR_MODES}), 
+                    {"modes":("STRING", {"choices": VWR_MODES}), 
                      "images": ("IMAGE", ),
                      "filename_prefix": ("STRING", {"default": "ComfyUI"}),
                      "hidden": {"prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO"}
@@ -117,12 +117,13 @@ class GHImg_Vwr:
 
     CATEGORY = "GH_Tools"
 
-    def Image_Viewer(self, images, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
-        if VWR_MODES == "Bypass":
+    def Image_Viewer(self, images, modes, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
+        modes = modes
+        if modes == "Bypass":
             return (images)
-        elif VWR_MODES == "Preview":
+        elif modes == "Preview":
             return self.save_images(images, filename_prefix, prompt, extra_pnginfo)
-        elif VWR_MODES == "Save":
+        elif modes == "Save":
             return self.save_images(images, filename_prefix, prompt, extra_pnginfo)
         return {} 
 
