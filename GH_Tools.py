@@ -123,7 +123,7 @@ class GHImg_Vwr:
             return (images)
         elif modes == "Preview":
             print("Mode - Preview")
-            self.save_images(images, filename_prefix, prompt, extra_pnginfo)
+            self.preview_images(images, filename_prefix, prompt, extra_pnginfo)
         elif modes == "Save":
             print("Mode - Save")
             self.save_images(images, filename_prefix, prompt, extra_pnginfo)
