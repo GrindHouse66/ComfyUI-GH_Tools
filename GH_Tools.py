@@ -103,12 +103,11 @@ class GHImg_Vwr:
     @classmethod
     def INPUT_TYPES(s):
         return {"required":
-                    {"modes":("STRING", {"choices": VWR_MODES}), 
+                    {"modes":("INT", {"default": 1, "min": 1, "max": 3, "step": 1, "display": "dropdown",}), 
                      "images": ("IMAGE", ),
-                     "filename_prefix": ("STRING", {"default": "ComfyUI"}),
-                     "hidden": {"prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO"}
-                    }
-        }
+                     "filename_prefix": ("STRING", {"default": "ComfyUI"})},
+                "hidden": {"prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO"}
+                }
 
     RETURN_TYPES = ()
     FUNCTION = "Image_Viewer"
@@ -119,12 +118,12 @@ class GHImg_Vwr:
 
     def Image_Viewer(self, images, modes, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
         modes = modes
-        if modes == "Bypass":
+        if modes == 1:
             return (images)
-        elif modes == "Preview":
-            return self.save_images(images, filename_prefix, prompt, extra_pnginfo)
-        elif modes == "Save":
-            return self.save_images(images, filename_prefix, prompt, extra_pnginfo)
+        elif modes == 2:
+            self.save_images(images, filename_prefix, prompt, extra_pnginfo)
+        elif modes == 3:
+            self.save_images(images, filename_prefix, prompt, extra_pnginfo)
         return {} 
 
     def save_images(self, images, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
