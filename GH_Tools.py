@@ -121,7 +121,7 @@ class GHImg_Vwr:
         if modes == "Bypass":
             return (images)
         elif modes == "Preview":
-            self.preview_images(images, filename_prefix, prompt, extra_pnginfo)
+            self.preview_images(images)
         elif modes == "Save":
             self.save_images(images, filename_prefix, prompt, extra_pnginfo)
         return {} 
